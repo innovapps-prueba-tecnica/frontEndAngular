@@ -37,8 +37,8 @@ export class VueloComponent implements OnInit {
         ); */
     }
 
-    deleteUser(id) {
-    /*     swal({
+    delete(id) {
+         swal({
             title: 'Advertencia',
             text: 'Deseas eliminar el usuario?',
             type: 'warning',
@@ -47,7 +47,7 @@ export class VueloComponent implements OnInit {
             cancelButtonText: 'Cancelar'
         }).then(result => {
             if (result.value) {
-                this.userService.deleteUser(id).subscribe(res => {
+                this.vueloService.delete(id).subscribe(res => {
                     swal({
                         title: 'Exíto',
                         text: 'Se elinino el usuario exisotamente'
@@ -58,7 +58,7 @@ export class VueloComponent implements OnInit {
                         .catch(swal.noop);
                 });
             }
-        }).catch(swal.noop); */
+        }).catch(swal.noop); 
     }
 }
 

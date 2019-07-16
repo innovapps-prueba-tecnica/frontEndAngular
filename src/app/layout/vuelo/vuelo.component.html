@@ -2,16 +2,16 @@
     <div class="row">
         <div class="col-xl-12">
             <h2 class="page-header">
-                Usuarios
+                Vuelos
             </h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/user']">Usuarios</a>
+                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/vuelo']">VUelos</a>
                 </li>
             </ol>
         </div>
     </div>
-    <button routerLink="/user/create">Crear usuario</button>
+    <button routerLink="/vuelo/create">Crear vuelo</button>
     <table datatable class="table">
         <thead>
             <tr>
@@ -31,10 +31,10 @@
                 <td>{{item.telephone}}</td>
                 <td>{{item.email}}</td>
                 <td>
-                    <button routerLink="/user/edit/{{item.id}}">
+                    <button routerLink="/vuelo/edit/{{item.id}}">
                         Editar
                     </button>
-                    <button (click)="deleteUser(item.id)">
+                    <button (click)="delete(item.id)">
                         Eliminar
                     </button>
                 </td>

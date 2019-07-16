@@ -54,8 +54,8 @@ export class VueloService {
     return this.http.get(ruta, this.options.headers);
   }
 
-  deleteUser(id): Observable<any> {
-    const ruta = this.routeBaseApi + 'deleteuser/' + id;
+  delete(id): Observable<any> {
+    const ruta = this.routeBaseApi + 'deletevuelo/' + id;
     return this.http.get(ruta, this.options.headers);
   }
 
