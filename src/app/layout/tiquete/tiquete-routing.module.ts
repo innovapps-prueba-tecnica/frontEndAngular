@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { VueloComponent, VueloCreateComponent, VueloEditComponent } from './vuelo.component';
+import { TiqueteComponent, TiqueteCreateComponent, TiqueteEditComponent } from './Tiquete.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: VueloComponent
+        component: TiqueteComponent
     },
     {
-        path: 'crear',
-        component: VueloCreateComponent
+        path: 'create',
+        component: TiqueteCreateComponent
     },
     {
         path: 'edit/:id',
-        component: VueloEditComponent
+        component: TiqueteEditComponent
     }
 ];
 
@@ -21,4 +21,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class VueloRoutingModule {}
+export class TiqueteRoutingModule {}

@@ -6,30 +6,28 @@
             </h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/vuelos']">Vuelos</a>
+                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/vuelo']">VUelos</a>
                 </li>
             </ol>
         </div>
     </div>
-    <button routerLink="/vuelos/crear">Crear vuelo</button>
+    <button routerLink="/vuelo/create">Crear vuelo</button>
     <table datatable class="table">
         <thead>
             <tr>
-                <th>Descripción</th>
-                <th>Fecha de salida</th>
-                <th>Ciudad de origen</th>
-                <th>Ciudad de destino</th>
+                <th>Aerolinea</th>
+                <th>Descripcion</th>
+                <th>Cantidad maxima de pasajeros</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of data">
+                <td>{{item.aerolinea}}</td>
                 <td>{{item.descripcion}}</td>
-                <td>{{item.fecha_salida}}</td>
-                <td>{{item.ciudad_origen}}</td>
-                <td>{{item.ciudad_destino}}</td>
+                <td>{{item.cantidad_maxima_pasajeros}}</td>
                 <td>
-                    <button routerLink="/vuelo/edit/{{item.id}}">
+                    <button routerLink="/avion/edit/{{item.id}}">
                         Editar
                     </button>
                     <button (click)="delete(item.id)">

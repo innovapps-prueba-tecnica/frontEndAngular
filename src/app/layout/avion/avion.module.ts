@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { UserRoutingModule } from './user-routing.module';
-import { UserComponent, UserCreateComponent, UserEditComponent } from './user.component';
-import { UserService } from '../../shared';
+import { AvionRoutingModule } from './avion-routing.module';
+import { AvionComponent, AvionCreateComponent, AvionEditComponent } from './avion.component';
+import { AvionService } from '../../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,15 +13,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         TranslateModule,
         FormsModule,
         ReactiveFormsModule,
-        UserRoutingModule
+        AvionRoutingModule
     ],
-    providers:[
-        UserService
+    providers: [
+        AvionService
     ],
     declarations: [
-        UserComponent,
-        UserCreateComponent,
-        UserEditComponent
+        AvionComponent,
+        AvionCreateComponent,
+        AvionEditComponent
     ]
 })
-export class UserModule { }
+export class AvionModule { }

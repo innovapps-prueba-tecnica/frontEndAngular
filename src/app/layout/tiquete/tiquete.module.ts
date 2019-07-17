@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { RouletteRoutingModule } from './roulette-routing.module';
-import { RouletteComponent } from './roulette.component';
-import { UserService } from '../../shared';
+import { TiqueteRoutingModule } from './tiquete-routing.module';
+import { TiqueteComponent, TiqueteCreateComponent, TiqueteEditComponent } from './tiquete.component';
+import { TiqueteService } from '../../shared';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -13,13 +13,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         TranslateModule,
         FormsModule,
         ReactiveFormsModule,
-        RouletteRoutingModule
+        TiqueteRoutingModule
     ],
     providers:[
-        UserService
+        TiqueteService
     ],
     declarations: [
-        RouletteComponent
+        TiqueteComponent,
+        TiqueteCreateComponent,
+        TiqueteEditComponent
     ]
 })
-export class RouletteModule { }
+export class TiqueteModule { }

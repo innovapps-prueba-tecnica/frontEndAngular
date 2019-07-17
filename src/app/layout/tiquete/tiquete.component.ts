@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VueloService } from '../../shared';
+import { TiqueteService } from '../../shared';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal, { SweetAlertType } from 'sweetalert2';
 import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -19,88 +19,89 @@ export interface Swal {
 }
 
 @Component({
-    templateUrl: './vuelo.component.html',
-    styleUrls: ['./vuelo.component.scss']
+    templateUrl: './tiquete.component.html',
+    styleUrls: ['./tiquete.component.scss']
 })
-export class VueloComponent implements OnInit {
+export class TiqueteComponent implements OnInit {
     data: any;
-    constructor(private vueloService: VueloService) {}
+    constructor(private tiqueteService: TiqueteService) {}
 
     ngOnInit() {
-        this.vueloService.getAll().subscribe(
+ /*        this.userService.getUsers().subscribe(
             res => {
                 this.data = res;
             },
             error => {
                 console.log('error', error);
             }
-        );
+        ); */
     }
 
     delete(id) {
-        swal({
+/*          swal({
             title: 'Advertencia',
-            text: 'Deseas eliminar el vuelo?',
+            text: 'Deseas eliminar el usuario?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Eliminar',
             cancelButtonText: 'Cancelar'
-        })
-            .then(result => {
-                if (result.value) {
-                    this.vueloService.delete(id).subscribe(res => {
-                        swal({
-                            title: 'Exíto',
-                            text: 'Se elinino el usuario exisotamente'
+        }).then(result => {
+            if (result.value) {
+                this.vueloService.delete(id).subscribe(res => {
+                    swal({
+                        title: 'Exíto',
+                        text: 'Se elinino el usuario exisotamente'
+                    })
+                        .then(willDelete => {
+                            this.ngOnInit();
                         })
-                            .then(willDelete => {
-                                this.ngOnInit();
-                            })
-                            .catch(swal.noop);
-                    });
-                }
-            })
-            .catch(swal.noop);
+                        .catch(swal.noop);
+                });
+            }
+        }).catch(swal.noop);  */
     }
 }
 
 @Component({
-    templateUrl: './vuelo.create.component.html',
-    styleUrls: ['./vuelo.component.scss']
+    templateUrl: './tiquete.create.component.html',
+    styleUrls: ['./tiquete.component.scss']
 })
-export class VueloCreateComponent implements OnInit {
-    constructor(private vueloService: VueloService, private router: Router, private fb: FormBuilder) {
+export class TiqueteCreateComponent implements OnInit {
+    constructor(private tiqueteService: TiqueteService, private router: Router, private fb: FormBuilder) {
         this.userForm = new FormGroup({
-            descripcion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            fechaSalida: new FormControl('', Validators.compose([Validators.required])),
-            ciudadOrigen: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            ciudadDestino: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)]))
+            name: new FormControl('', Validators.compose([Validators.required])),
+            lastName: new FormControl('', Validators.compose([Validators.required])),
+            amount: new FormControl('12000', Validators.compose([Validators.required])),
+            email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+            telephone: new FormControl('', Validators.compose([Validators.required]))
         });
     }
     userForm: any;
 
     formErrors = {
-        descripcion: [],
-        fechaSalida: [],
-        ciudadOrigen: [],
-        ciudadDestino: []
+        name: [],
+        lastName: [],
+        amount: [],
+        email: [],
+        telephone: []
     };
 
     validationMessages = {
-        descripcion: {
-            required: 'La descripción es obligatoria.',
-            maxlength: 'La ciudad de origen no puede tener mas de 45 caracteres'
+        name: {
+            required: 'El nombre es obligatorio.'
         },
-        fechaSalida: {
-            required: 'La fecha de salida es obligatoria.'
+        lastName: {
+            required: 'El apellido es obligatorio.'
         },
-        ciudadOrigen: {
-            required: 'La ciudad de origen es obligatoria.',
-            maxlength: 'La ciudad de origen no puede tener mas de 45 caracteres'
+        amount: {
+            required: 'La cédula es obligatoria.'
         },
-        ciudadDestino: {
-            required: 'La ciudad de destino es obligatoria.',
-            maxlength: 'La ciudad de destino no puede tener mas de 45 caracteres'
+        email: {
+            required: 'El correo es obligatorio.',
+            email: 'El formato del correo eléctronico no es valido'
+        },
+        telephone: {
+            required: 'El teléfono es obligatorio.'
         }
     };
 
@@ -126,6 +127,7 @@ export class VueloCreateComponent implements OnInit {
             const control = form.get(field);
             if (control && !control.valid) {
                 const messages = this.validationMessages[field];
+
                 // tslint:disable-next-line:forin
                 for (const key in control.errors) {
                     errorValidacion.push(messages[key]);
@@ -133,7 +135,7 @@ export class VueloCreateComponent implements OnInit {
             }
         }
         if (this.userForm.valid) {
-            /*             this.userService.saveUser(this.userForm.value).subscribe(
+/*             this.userService.saveUser(this.userForm.value).subscribe(
                 res => {
                     swal({
                         title: 'Exíto',
@@ -163,61 +165,65 @@ export class VueloCreateComponent implements OnInit {
 }
 
 @Component({
-    templateUrl: './vuelo.edit.component.html',
-    styleUrls: ['./vuelo.component.scss']
+    templateUrl: './tiquete.edit.component.html',
+    styleUrls: ['./tiquete.component.scss']
 })
-export class VueloEditComponent implements OnInit {
+export class TiqueteEditComponent implements OnInit {
     id;
     // tslint:disable-next-line:member-ordering
     userForm: any;
     formErrors = {
-        descripcion: [],
-        fechaSalida: [],
-        ciudadOrigen: [],
-        ciudadDestino: []
+        name: [],
+        lastName: [],
+        amount: [],
+        email: [],
+        telephone: []
     };
 
     validationMessages = {
-        descripcion: {
-            required: 'La descripción es obligatoria.',
-            maxlength: 'La ciudad de origen no puede tener mas de 45 caracteres'
+        name: {
+            required: 'El nombre es obligatorio.'
         },
-        fechaSalida: {
-            required: 'La fecha de salida es obligatoria.'
+        lastName: {
+            required: 'El apellido es obligatorio.'
         },
-        ciudadOrigen: {
-            required: 'La ciudad de origen es obligatoria.',
-            maxlength: 'La ciudad de origen no puede tener mas de 45 caracteres'
+        amount: {
+            required: 'La cédula es obligatoria.'
         },
-        ciudadDestino: {
-            required: 'La ciudad de destino es obligatoria.',
-            maxlength: 'La ciudad de destino no puede tener mas de 45 caracteres'
+        email: {
+            required: 'El correo es obligatorio.',
+            email: 'El formato del correo eléctronico no es valido'
+        },
+        telephone: {
+            required: 'El teléfono es obligatorio.'
         }
     };
 
-    constructor(private vueloService: VueloService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
+    constructor(private tiqueteService: TiqueteService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
         this.userForm = new FormGroup({
-            descripcion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            fechaSalida: new FormControl('', Validators.compose([Validators.required])),
-            ciudadOrigen: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            ciudadDestino: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)]))
+            name: new FormControl('', Validators.compose([Validators.required])),
+            lastName: new FormControl('', Validators.compose([Validators.required])),
+            amount: new FormControl('', Validators.compose([Validators.required])),
+            email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+            telephone: new FormControl('', Validators.compose([Validators.required]))
         });
         this.getData();
     }
 
     getData() {
         this.id = this.route.snapshot.paramMap.get('id');
-                this.vueloService.show(this.id).subscribe(
+/*         this.userService.showUser(this.id).subscribe(
             res => {
-                this.userForm.controls['descripcion'].setValue(res.descripcion);
-                this.userForm.controls['fechaSalida'].setValue(res.fecha_salida);
-                this.userForm.controls['ciudadOrigen'].setValue(res.ciudad_origen);
-                this.userForm.controls['ciudadDestino'].setValue(res.ciudad_destino);
+                this.userForm.controls['name'].setValue(res.name);
+                this.userForm.controls['amount'].setValue(res.amount);
+                this.userForm.controls['telephone'].setValue(res.telephone);
+                this.userForm.controls['lastName'].setValue(res.lastName);
+                this.userForm.controls['email'].setValue(res.email);
             },
             error => {
                 console.log('error', error);
             }
-        );
+        ); */
     }
 
     ngOnInit() {}
@@ -241,7 +247,7 @@ export class VueloEditComponent implements OnInit {
             }
         }
         if (this.userForm.valid) {
-            /*      this.userService.editUser(this.userForm.value, this.id).subscribe(
+       /*      this.userService.editUser(this.userForm.value, this.id).subscribe(
                 res => {
                     swal({
                         title: 'Exíto',

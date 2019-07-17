@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment as ENV } from '../../../environments/environment';
 
 @Injectable()
-export class VueloService {
+export class AvionService {
   options: any;
   routeBaseApi: string = ENV.BASE_URL;
   constructor(private http: HttpClient) {

@@ -2,39 +2,33 @@
     <div class="row">
         <div class="col-xl-12">
             <h2 class="page-header">
-                Usuarios
+                Pasajeros
             </h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/user']">Usuarios</a>
+                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/pasajero']">VUelos</a>
                 </li>
             </ol>
         </div>
     </div>
-    <button routerLink="/user/create">Crear usuario</button>
+    <button routerLink="/pasajero/create">Crear pasajero</button>
     <table datatable class="table">
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Cantidad de dinero</th>
-                <th>Telefono</th>
                 <th>Correo electronico</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of data">
-                <td>{{item.name}}</td>
-                <td>{{item.lastName}}</td>
-                <td>${{item.amount}}</td>
-                <td>{{item.telephone}}</td>
+                <td>{{item.nombres}}</td>
                 <td>{{item.email}}</td>
                 <td>
-                    <button routerLink="/user/edit/{{item.id}}">
+                    <button routerLink="/pasajero/edit/{{item.id}}">
                         Editar
                     </button>
-                    <button (click)="deleteUser(item.id)">
+                    <button (click)="delete(item.id)">
                         Eliminar
                     </button>
                 </td>
