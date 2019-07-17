@@ -6,7 +6,7 @@ Este es un proyecto basado en Angular 8.0.2, como parte de una prueba tecnica
 
 ### Se clona el repositorio
 
-	git clone https://github.com/pca-ingenieria/frontAngular.git
+	git clone --
 	
 ### Ingresa a la carpeta
 

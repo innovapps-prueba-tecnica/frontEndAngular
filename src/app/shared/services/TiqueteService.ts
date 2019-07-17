@@ -44,5 +44,5 @@ export class TiqueteService {
     const ruta = this.routeBaseApi + 'deleteuser/' + id;
     return this.http.get(ruta, this.options.headers);
   }
-  
+
 }

@@ -1,0 +1,47 @@
+<div>
+    <div class="row">
+        <div class="col-xl-12">
+            <h2 class="page-header">
+                Tiquetes
+            </h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/tiquetes']">Tiquetes</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <button routerLink="/tiquetes/crear">Crear tiquete</button>
+    <table datatable class="table">
+        <thead>
+            <tr>
+                <th>Nombre de pasajero</th>
+                <th>Vuelo</th>
+                <th>Avion</th>
+                <th>Valor tiquete</th>
+                <th>Iva tiquete</th>
+                <th>Descuento tiquete</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data">
+                <td>{{item.nombrePasajero}}</td>
+                <td>{{item.vuelo}}</td>
+                <td>{{item.avion}}</td>
+                <td>{{item.valor_tiquete}}</td>
+                <td>{{item.iva_tiquete}}</td>
+                <td>{{item.descuento_tiquete}}</td>
+                <td>
+                    <button routerLink="/tiquetes/edit/{{item.id_tiquete}}">
+                        Editar
+                    </button>
+                    <button (click)="delete(item.id)">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

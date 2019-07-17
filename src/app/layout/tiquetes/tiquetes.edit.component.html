@@ -1,0 +1,59 @@
+<div>
+    <div class="row">
+        <div class="col-xl-12">
+            <h2 class="page-header">
+                Editar vuelo
+            </h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/vuelos']">Vuelos</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <form [formGroup]="userForm" role="form" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="form-control-label" for="inputSuccess">Valor tiquete</label>
+                    <input class="form-control" type="text" formControlName="valor_tiquete">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="inputSuccess">Descuento tiquete:</label>
+                    <input class="form-control" type="datetime" formControlName="descuento_tiquete">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="inputSuccess">Vuelo</label>
+                    <select class="form-control" formControlName="id_vuelo">
+                        <option *ngFor="let item of datosVuelos" value="{{item.id}}">
+                            {{item.descripcion}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="form-control-label" for="inputSuccess">Pasajero</label>
+                    <select class="form-control" formControlName="id_pasajero">
+                        <option *ngFor="let item of datosPasajeros" value="{{item.id}}">
+                            {{item.nombres}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="inputSuccess">Avion:</label>
+                    <select class="form-control" formControlName="id_avion">
+                        <option *ngFor="let item of datosPasajeros" value="{{item.id}}">
+                            {{item.descripcion}} - {{item.aerolinea}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <button type="submit">Editar</button>
+            </div>
+        </div>
+    </form>
+</div>

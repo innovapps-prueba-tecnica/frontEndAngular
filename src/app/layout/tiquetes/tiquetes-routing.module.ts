@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TiqueteComponent, TiqueteCreateComponent, TiqueteEditComponent } from './Tiquete.component';
+import { TiquetesComponent, TiquetesCreateComponent, TiquetesEditComponent } from './tiquetes.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: TiqueteComponent
+        component: TiquetesComponent
     },
     {
-        path: 'create',
-        component: TiqueteCreateComponent
+        path: 'crear',
+        component: TiquetesCreateComponent
     },
     {
         path: 'edit/:id',
-        component: TiqueteEditComponent
+        component: TiquetesEditComponent
     }
 ];
 
@@ -21,4 +21,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class TiqueteRoutingModule {}
+export class TiquetesRoutingModule {}

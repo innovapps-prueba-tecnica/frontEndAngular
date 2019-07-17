@@ -50,7 +50,7 @@ export class PasajeroComponent implements OnInit {
                 this.pasajeroService.delete(id).subscribe(res => {
                     swal({
                         title: 'Exíto',
-                        text: 'Se elinino el usuario exisotamente'
+                        text: 'Se elimino el pasajero exisotamente'
                     })
                         .then(willDelete => {
                             this.ngOnInit();
@@ -172,48 +172,35 @@ export class PasajeroEditComponent implements OnInit {
 
     validationMessages = {
         name: {
-            required: 'El nombre es obligatorio.'
-        },
-        lastName: {
-            required: 'El apellido es obligatorio.'
-        },
-        amount: {
-            required: 'La cédula es obligatoria.'
+            required: 'El nombre es obligatorio.',
+            maxlength: 'El nombre no puede tener mas de 45 caracteres'
         },
         email: {
             required: 'El correo es obligatorio.',
-            email: 'El formato del correo eléctronico no es valido'
-        },
-        telephone: {
-            required: 'El teléfono es obligatorio.'
+            email: 'El formato del correo eléctronico no es valido',
+            maxlength: 'El correo electronico no puede tener mas de 60 caracteres'
         }
     };
 
     constructor(private pasajeroService: PasajeroService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
         this.userForm = new FormGroup({
-            name: new FormControl('', Validators.compose([Validators.required])),
-            lastName: new FormControl('', Validators.compose([Validators.required])),
-            amount: new FormControl('', Validators.compose([Validators.required])),
-            email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-            telephone: new FormControl('', Validators.compose([Validators.required]))
+            name: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
+            email: new FormControl('', Validators.compose([Validators.required, Validators.email, Validators.maxLength(60)]))
         });
         this.getData();
     }
 
     getData() {
         this.id = this.route.snapshot.paramMap.get('id');
-/*         this.userService.showUser(this.id).subscribe(
+        this.pasajeroService.show(this.id).subscribe(
             res => {
                 this.userForm.controls['name'].setValue(res.name);
-                this.userForm.controls['amount'].setValue(res.amount);
-                this.userForm.controls['telephone'].setValue(res.telephone);
-                this.userForm.controls['lastName'].setValue(res.lastName);
                 this.userForm.controls['email'].setValue(res.email);
             },
             error => {
                 console.log('error', error);
             }
-        ); */
+        );
     }
 
     ngOnInit() {}

@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         ReactiveFormsModule,
         VueloRoutingModule
     ],
-    providers:[
+    providers: [
         VueloService
     ],
     declarations: [
