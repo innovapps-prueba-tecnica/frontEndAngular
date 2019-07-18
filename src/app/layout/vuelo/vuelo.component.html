@@ -24,12 +24,12 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of data">
-                <td>{{item.descripcion}}</td>
-                <td>{{item.fecha_salida}}</td>
-                <td>{{item.ciudad_origen}}</td>
-                <td>{{item.ciudad_destino}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.departureDate}}</td>
+                <td>{{item.originCity}}</td>
+                <td>{{item.destinationCity}}</td>
                 <td>
-                    <button routerLink="/vuelo/edit/{{item.id}}">
+                    <button routerLink="/vuelos/edit/{{item.id}}">
                         Editar
                     </button>
                     <button (click)="delete(item.id)">

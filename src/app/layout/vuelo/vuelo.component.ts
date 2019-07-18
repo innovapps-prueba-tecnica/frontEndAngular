@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { VueloService } from '../../shared';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal, { SweetAlertType } from 'sweetalert2';
-import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import {
+    Validators,
+    FormGroup,
+    FormBuilder,
+    FormControl
+} from '@angular/forms';
 
 export interface Swal {
     title?: string;
@@ -51,7 +56,7 @@ export class VueloComponent implements OnInit {
                     this.vueloService.delete(id).subscribe(res => {
                         swal({
                             title: 'Exíto',
-                            text: 'Se elinino el usuario exisotamente'
+                            text: 'Se elimino el vuelo exisotamente'
                         })
                             .then(willDelete => {
                                 this.ngOnInit();
@@ -69,38 +74,64 @@ export class VueloComponent implements OnInit {
     styleUrls: ['./vuelo.component.scss']
 })
 export class VueloCreateComponent implements OnInit {
-    constructor(private vueloService: VueloService, private router: Router, private fb: FormBuilder) {
+    constructor(
+        private vueloService: VueloService,
+        private router: Router,
+        private fb: FormBuilder
+    ) {
         this.userForm = new FormGroup({
-            descripcion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            fechaSalida: new FormControl('', Validators.compose([Validators.required])),
-            ciudadOrigen: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            ciudadDestino: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)]))
+            description: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(45)
+                ])
+            ),
+            departure_date: new FormControl(
+                '',
+                Validators.compose([Validators.required])
+            ),
+            origin_city: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(45)
+                ])
+            ),
+            destination_city: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(45)
+                ])
+            )
         });
     }
     userForm: any;
 
     formErrors = {
-        descripcion: [],
-        fechaSalida: [],
-        ciudadOrigen: [],
-        ciudadDestino: []
+        description: [],
+        departure_date: [],
+        origin_city: [],
+        destination_city: []
     };
 
     validationMessages = {
-        descripcion: {
+        description: {
             required: 'La descripción es obligatoria.',
             maxlength: 'La ciudad de origen no puede tener mas de 45 caracteres'
         },
-        fechaSalida: {
+        departure_date: {
             required: 'La fecha de salida es obligatoria.'
         },
-        ciudadOrigen: {
+        origin_city: {
             required: 'La ciudad de origen es obligatoria.',
             maxlength: 'La ciudad de origen no puede tener mas de 45 caracteres'
         },
-        ciudadDestino: {
+        destination_city: {
             required: 'La ciudad de destino es obligatoria.',
-            maxlength: 'La ciudad de destino no puede tener mas de 45 caracteres'
+            maxlength:
+                'La ciudad de destino no puede tener mas de 45 caracteres'
         }
     };
 
@@ -133,14 +164,14 @@ export class VueloCreateComponent implements OnInit {
             }
         }
         if (this.userForm.valid) {
-            /*             this.userService.saveUser(this.userForm.value).subscribe(
+            this.vueloService.save(this.userForm.value).subscribe(
                 res => {
                     swal({
                         title: 'Exíto',
-                        text: 'Se creo el usuario exisotamente'
+                        text: 'Se creo el vuelo exisotamente'
                     })
                         .then(willDelete => {
-                            this.router.navigate(['/user']);
+                            this.router.navigate(['/vuelos']);
                         })
                         .catch(swal.noop);
                 },
@@ -151,7 +182,7 @@ export class VueloCreateComponent implements OnInit {
                         type: 'warning'
                     }).catch(swal.noop);
                 }
-            ); */
+            );
         } else {
             swal({
                 title: 'Error',
@@ -171,48 +202,79 @@ export class VueloEditComponent implements OnInit {
     // tslint:disable-next-line:member-ordering
     userForm: any;
     formErrors = {
-        descripcion: [],
-        fechaSalida: [],
-        ciudadOrigen: [],
-        ciudadDestino: []
+        description: [],
+        departure_date: [],
+        origin_city: [],
+        destination_city: []
     };
 
     validationMessages = {
-        descripcion: {
+        description: {
             required: 'La descripción es obligatoria.',
             maxlength: 'La ciudad de origen no puede tener mas de 45 caracteres'
         },
-        fechaSalida: {
+        departure_date: {
             required: 'La fecha de salida es obligatoria.'
         },
-        ciudadOrigen: {
+        origin_city: {
             required: 'La ciudad de origen es obligatoria.',
             maxlength: 'La ciudad de origen no puede tener mas de 45 caracteres'
         },
-        ciudadDestino: {
+        destination_city: {
             required: 'La ciudad de destino es obligatoria.',
-            maxlength: 'La ciudad de destino no puede tener mas de 45 caracteres'
+            maxlength:
+                'La ciudad de destino no puede tener mas de 45 caracteres'
         }
     };
 
-    constructor(private vueloService: VueloService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
+    constructor(
+        private vueloService: VueloService,
+        private route: ActivatedRoute,
+        private router: Router,
+        private fb: FormBuilder
+    ) {
         this.userForm = new FormGroup({
-            descripcion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            fechaSalida: new FormControl('', Validators.compose([Validators.required])),
-            ciudadOrigen: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            ciudadDestino: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)]))
+            description: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(45)
+                ])
+            ),
+            departure_date: new FormControl(
+                '',
+                Validators.compose([Validators.required])
+            ),
+            origin_city: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(45)
+                ])
+            ),
+            destination_city: new FormControl(
+                '',
+                Validators.compose([
+                    Validators.required,
+                    Validators.maxLength(45)
+                ])
+            )
         });
         this.getData();
     }
 
     getData() {
         this.id = this.route.snapshot.paramMap.get('id');
-                this.vueloService.show(this.id).subscribe(
+        this.vueloService.show(this.id).subscribe(
             res => {
-                this.userForm.controls['descripcion'].setValue(res.descripcion);
-                this.userForm.controls['fechaSalida'].setValue(res.fecha_salida);
-                this.userForm.controls['ciudadOrigen'].setValue(res.ciudad_origen);
-                this.userForm.controls['ciudadDestino'].setValue(res.ciudad_destino);
+                this.userForm.controls['description'].setValue(res.description);
+                this.userForm.controls['departure_date'].setValue(
+                    res.departureDate
+                );
+                this.userForm.controls['origin_city'].setValue(res.originCity);
+                this.userForm.controls['destination_city'].setValue(
+                    res.destinationCity
+                );
             },
             error => {
                 console.log('error', error);
@@ -241,14 +303,14 @@ export class VueloEditComponent implements OnInit {
             }
         }
         if (this.userForm.valid) {
-            /*      this.userService.editUser(this.userForm.value, this.id).subscribe(
+                 this.vueloService.edit(this.userForm.value, this.id).subscribe(
                 res => {
                     swal({
                         title: 'Exíto',
-                        text: 'Se edito el usuario exisotamente'
+                        text: 'Se edito el vuelo exisotamente'
                     })
                         .then(willDelete => {
-                            this.router.navigate(['/user']);
+                            this.router.navigate(['/vuelos']);
                         })
                         .catch(swal.noop);
                 },
@@ -259,7 +321,7 @@ export class VueloEditComponent implements OnInit {
                         type: 'warning'
                     }).catch(swal.noop);
                 }
-            ); */
+            );
         } else {
             swal({
                 title: 'Error',

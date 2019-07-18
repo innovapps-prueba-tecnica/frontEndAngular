@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xl-12">
             <h2 class="page-header">
-                Vuelos
+                Aviones
             </h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -11,7 +11,7 @@
             </ol>
         </div>
     </div>
-    <button routerLink="/vuelo/create">Crear avion</button>
+    <button routerLink="/aviones/create">Crear avion</button>
     <table datatable class="table">
         <thead>
             <tr>
@@ -23,11 +23,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of data">
-                <td>{{item.aerolinea}}</td>
-                <td>{{item.descripcion}}</td>
-                <td>{{item.cantidad_maxima_pasajeros}}</td>
+                <td>{{item.airline}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.maximunQuantity}}</td>
                 <td>
-                    <button routerLink="/avion/edit/{{item.id}}">
+                    <button routerLink="/aviones/edit/{{item.id}}">
                         Editar
                     </button>
                     <button (click)="delete(item.id)">

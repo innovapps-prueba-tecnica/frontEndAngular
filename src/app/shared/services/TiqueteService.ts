@@ -17,12 +17,12 @@ export class TiqueteService {
   }
 
   getAll(): Observable<any> {
-    const ruta = this.routeBaseApi + 'getusers';
+    const ruta = this.routeBaseApi + 'ticket';
     return this.http.get(ruta, this.options.headers);
   }
 
   save(data): Observable<any> {
-    const ruta = this.routeBaseApi + 'saveuser';
+    const ruta = this.routeBaseApi + 'ticket';
     return this.http.post(ruta, JSON.stringify(data), this.options.headers);
   }
 
@@ -31,17 +31,18 @@ export class TiqueteService {
       data: data,
       id: id
     };
-    const ruta = this.routeBaseApi + 'edituser';
+    const ruta = this.routeBaseApi + 'ticket';
     return this.http.post(ruta, JSON.stringify(json), this.options.headers);
   }
 
   delete(id): Observable<any> {
-    const ruta = this.routeBaseApi + 'deleteuser/' + id;
-    return this.http.get(ruta, this.options.headers);
+    // tslint:disable-next-line:radix
+    const ruta = this.routeBaseApi + 'ticket/' + parseInt(id);
+    return this.http.delete(ruta, this.options.headers);
   }
 
   show(id): Observable<any> {
-    const ruta = this.routeBaseApi + 'deleteuser/' + id;
+    const ruta = this.routeBaseApi + 'ticket/' + id;
     return this.http.get(ruta, this.options.headers);
   }
 

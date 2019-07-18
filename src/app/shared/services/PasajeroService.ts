@@ -17,32 +17,27 @@ export class PasajeroService {
   }
 
   getAll(): Observable<any> {
-    const ruta = this.routeBaseApi + 'getusers';
+    const ruta = this.routeBaseApi + 'passenger';
     return this.http.get(ruta, this.options.headers);
   }
 
   save(data): Observable<any> {
-    const ruta = this.routeBaseApi + 'saveuser';
-    return this.http.post(ruta, JSON.stringify(data), this.options.headers);
+    const ruta = this.routeBaseApi + 'passenger';
+    return this.http.post(ruta, data, this.options.headers);
   }
 
   edit(data, id): Observable<any> {
-    const json = {
-      data: data,
-      id: id
-    };
-    const ruta = this.routeBaseApi + 'edituser';
-    return this.http.post(ruta, JSON.stringify(json), this.options.headers);
+    const ruta = this.routeBaseApi + 'passenger/' + id;
+    return this.http.put(ruta, data, this.options.headers);
   }
 
   delete(id): Observable<any> {
-    const ruta = this.routeBaseApi + 'deleteuser/' + id;
-    return this.http.get(ruta, this.options.headers);
+    const ruta = this.routeBaseApi + 'passenger/' + id;
+    return this.http.delete(ruta, this.options.headers);
   }
 
   show(id): Observable<any> {
-    const ruta = this.routeBaseApi + 'deleteuser/' + id;
+    const ruta = this.routeBaseApi + 'passenger/' + id;
     return this.http.get(ruta, this.options.headers);
   }
-  
 }

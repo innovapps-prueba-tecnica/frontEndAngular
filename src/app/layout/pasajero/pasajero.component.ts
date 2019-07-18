@@ -125,14 +125,14 @@ export class PasajeroCreateComponent implements OnInit {
             }
         }
         if (this.userForm.valid) {
-/*             this.userService.saveUser(this.userForm.value).subscribe(
+            this.pasajeroService.save(this.userForm.value).subscribe(
                 res => {
                     swal({
                         title: 'Exíto',
-                        text: 'Se creo el usuario exisotamente'
+                        text: 'Se creo el pasajero exisotamente'
                     })
                         .then(willDelete => {
-                            this.router.navigate(['/user']);
+                            this.router.navigate(['/pasajeros']);
                         })
                         .catch(swal.noop);
                 },
@@ -143,7 +143,7 @@ export class PasajeroCreateComponent implements OnInit {
                         type: 'warning'
                     }).catch(swal.noop);
                 }
-            ); */
+            );
         } else {
             swal({
                 title: 'Error',
@@ -224,14 +224,14 @@ export class PasajeroEditComponent implements OnInit {
             }
         }
         if (this.userForm.valid) {
-       /*      this.userService.editUser(this.userForm.value, this.id).subscribe(
+            this.pasajeroService.edit(this.userForm.value, this.id).subscribe(
                 res => {
                     swal({
                         title: 'Exíto',
-                        text: 'Se edito el usuario exisotamente'
+                        text: 'Se edito el pasajero exisotamente'
                     })
                         .then(willDelete => {
-                            this.router.navigate(['/user']);
+                            this.router.navigate(['/pasajeros']);
                         })
                         .catch(swal.noop);
                 },
@@ -242,7 +242,7 @@ export class PasajeroEditComponent implements OnInit {
                         type: 'warning'
                     }).catch(swal.noop);
                 }
-            ); */
+            );
         } else {
             swal({
                 title: 'Error',

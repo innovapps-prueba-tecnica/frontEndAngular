@@ -50,7 +50,7 @@ export class AvionComponent implements OnInit {
                 this.avionService.delete(id).subscribe(res => {
                     swal({
                         title: 'Exíto',
-                        text: 'Se elinino el usuario exisotamente'
+                        text: 'Se elimino el avion exisotamente'
                     })
                         .then(willDelete => {
                             this.ngOnInit();
@@ -69,21 +69,21 @@ export class AvionComponent implements OnInit {
 export class AvionCreateComponent implements OnInit {
     constructor(private avionService: AvionService, private router: Router, private fb: FormBuilder) {
         this.userForm = new FormGroup({
-            aerolinea: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            descripcion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            cantidad_maxima_pasajeros: new FormControl('', Validators.compose([Validators.required]))
+            airline: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
+            description: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
+            maximunQuantity: new FormControl('', Validators.compose([Validators.required]))
         });
     }
     userForm: any;
 
     formErrors = {
-        aerolinea: [],
-        descripcion: [],
-        cantidad_maxima_pasajeros: []
+        airline: [],
+        description: [],
+        maximunQuantity: []
     };
 
     validationMessages = {
-        aerolinea: {
+        airline: {
             required: 'La aerolinea es obligatoria.',
             maxlength: 'La aerolinea no puede tener mas de 45 caracteres'
         },
@@ -91,7 +91,7 @@ export class AvionCreateComponent implements OnInit {
             required: 'La descripcion es obligatoria.',
             maxlength: 'La descripcion no puede tener mas de 45 caracteres'
         },
-        cantidad_maxima_pasajeros: {
+        maximunQuantity: {
             required: 'La cantidad maxima de pasajeros obligatoria.'
         }
     };
@@ -126,14 +126,14 @@ export class AvionCreateComponent implements OnInit {
             }
         }
         if (this.userForm.valid) {
-/*             this.userService.saveUser(this.userForm.value).subscribe(
+            this.avionService.save(this.userForm.value).subscribe(
                 res => {
                     swal({
                         title: 'Exíto',
-                        text: 'Se creo el usuario exisotamente'
+                        text: 'Se creo el avion exisotamente'
                     })
                         .then(willDelete => {
-                            this.router.navigate(['/user']);
+                            this.router.navigate(['/aviones']);
                         })
                         .catch(swal.noop);
                 },
@@ -144,7 +144,7 @@ export class AvionCreateComponent implements OnInit {
                         type: 'warning'
                     }).catch(swal.noop);
                 }
-            ); */
+            );
         } else {
             swal({
                 title: 'Error',
@@ -164,30 +164,30 @@ export class AvionEditComponent implements OnInit {
     // tslint:disable-next-line:member-ordering
     userForm: any;
     formErrors = {
-        aerolinea: [],
-        descripcion: [],
-        cantidad_maxima_pasajeros: []
+        airline: [],
+        description: [],
+        maximunQuantity: []
     };
 
     validationMessages = {
-        aerolinea: {
+        airline: {
             required: 'La aerolinea es obligatoria.',
             maxlength: 'La aerolinea no puede tener mas de 45 caracteres'
         },
-        descripcion: {
+        description: {
             required: 'La descripcion es obligatoria.',
             maxlength: 'La descripcion no puede tener mas de 45 caracteres'
         },
-        cantidad_maxima_pasajeros: {
+        maximunQuantity: {
             required: 'La cantidad maxima de pasajeros obligatoria.'
         }
     };
 
     constructor(private avionService: AvionService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
         this.userForm = new FormGroup({
-            aerolinea: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            descripcion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
-            cantidad_maxima_pasajeros: new FormControl('', Validators.compose([Validators.required]))
+            airline: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
+            description: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(45)])),
+            maximunQuantity: new FormControl('', Validators.compose([Validators.required]))
         });
         this.getData();
     }
@@ -196,9 +196,9 @@ export class AvionEditComponent implements OnInit {
         this.id = this.route.snapshot.paramMap.get('id');
         this.avionService.show(this.id).subscribe(
             res => {
-                this.userForm.controls['aerolinea'].setValue(res.aerolinea);
-                this.userForm.controls['descripcion'].setValue(res.descripcion);
-                this.userForm.controls['cantidad_maxima_pasajeros'].setValue(res.cantidad_maxima_pasajeros);
+                this.userForm.controls['airline'].setValue(res.airline);
+                this.userForm.controls['description'].setValue(res.description);
+                this.userForm.controls['maximunQuantity'].setValue(res.maximunQuantity);
             },
             error => {
                 console.log('error', error);
@@ -227,14 +227,14 @@ export class AvionEditComponent implements OnInit {
             }
         }
         if (this.userForm.valid) {
-       /*      this.userService.editUser(this.userForm.value, this.id).subscribe(
+            this.avionService.edit(this.userForm.value, this.id).subscribe(
                 res => {
                     swal({
                         title: 'Exíto',
                         text: 'Se edito el usuario exisotamente'
                     })
                         .then(willDelete => {
-                            this.router.navigate(['/user']);
+                            this.router.navigate(['/aviones']);
                         })
                         .catch(swal.noop);
                 },
@@ -245,7 +245,7 @@ export class AvionEditComponent implements OnInit {
                         type: 'warning'
                     }).catch(swal.noop);
                 }
-            ); */
+            );
         } else {
             swal({
                 title: 'Error',

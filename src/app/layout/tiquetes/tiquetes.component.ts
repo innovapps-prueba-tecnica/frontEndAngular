@@ -40,7 +40,7 @@ export class TiquetesComponent implements OnInit {
     delete(id) {
         swal({
             title: 'Advertencia',
-            text: 'Deseas eliminar el vuelo?',
+            text: 'Deseas eliminar el tiquete?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Eliminar',
@@ -51,7 +51,7 @@ export class TiquetesComponent implements OnInit {
                     this.tiqueteService.delete(id).subscribe(res => {
                         swal({
                             title: 'Exíto',
-                            text: 'Se elinino el usuario exisotamente'
+                            text: 'Se elimino el tiquete exisotamente'
                         })
                             .then(willDelete => {
                                 this.ngOnInit();
